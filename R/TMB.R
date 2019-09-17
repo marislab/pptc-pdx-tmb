@@ -76,7 +76,7 @@ write.table(ages2[,2:ncol(ages2)], paste0(results.folder, Sys.Date(),"-summary-a
 #plot Mut per Mb by histology
 breaks = c(1,5,10,50,100, 150)
 pdf(paste0(results.folder, Sys.Date(), "-pdx-mutload-byhistology.pdf"), width = 22, height = 8)
-ggplot(data=reorder.load.short, aes(x = reorder(Model, MutperMB), y = MutperMB, color = Histology.Detailed)) +
+ggplot(data=reorder.load.med, aes(x = reorder(Model, MutperMB), y = MutperMB, color = Histology.Detailed)) +
   geom_point(stat = "identity", size = 4, shape = 1)+
   scale_color_manual(values =histcol) +
   facet_wrap("hist_label", nrow = 1, scales="free_x") +
