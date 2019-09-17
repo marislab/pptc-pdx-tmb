@@ -81,18 +81,14 @@ ggplot(data=reorder.load.med, aes(x = reorder(Model, MutperMB), y = MutperMB, co
   scale_color_manual(values =histcol) +
   facet_wrap("hist_label", nrow = 1, scales="free_x") +
   geom_hline(aes(yintercept = med, group = hist_label), colour = 'black')+
-  #geom_blank(aes(y = y_max))+
-  #theme_bw()+
   theme_Publication()+
   theme(axis.text.x = element_blank(),
         strip.text.x = element_text(angle=90, face = "bold", hjust = 0, vjust = 0),
         panel.border = element_rect(fill = NA, colour = "grey"),
         strip.background = element_blank(),
-        #panel.spacing = unit(1, "lines"),
         legend.position = "none")+
   scale_x_discrete(breaks=NULL, expand = c(0.3, 0.3))+
   scale_y_continuous(limits=c(0,10))+
-  #scale_y_log10(breaks = breaks)+
   labs(x ="", y = "Mutations per Mb")
 
 dev.off()
@@ -107,12 +103,6 @@ load.short.freq <- ddply(load.short, .(Phase2), dplyr::mutate, freq = length(Pha
 
 ###select only diagnosis and relapse
 load.short.freq <- subset(load.short.freq, Phase2 == "Diagnosis" | Phase2 == "Relapse")
-
-###add phase label
-load.short.freq$phase_label <- paste(load.short.freq$Phase2, " (n = ", phase.freq$freq, ")", sep = "")
-
-#write.table(load.short.freq, "~/Downloads/phase-freq.txt", sep = "\t", col.names = T, row.names = F, quote = F)
-#load.short.freq <- read.delim("~/Downloads/phase-freq.txt", header = T, sep = "\t", as.is = T)
 
 ###reorder by median
 load.med <- dplyr::mutate(load.short.freq,
@@ -197,9 +187,7 @@ print(ggviolin(rel.coll, x = "phase_label", y = "logmut", fill = "phase_label",
                palette = dxrelcol, alpha = 0.8,#add = "boxplot",
                add.params = list(fill = "white"))+
         facet_wrap(~Histology.Detailed, nrow = 1) +
-        stat_compare_means(comparisons = list(c("Diagnosis", "Relapse")), method = "wilcox.test", label.y = c(7,4,4,6), label = "p.format")+ # Add significance levels
-        #stat_compare_means(label.y.npc = "top") + ##global p
-        theme_Publication() + 
+        stat_compare_means(comparisons = list(c("Diagnosis", "Relapse")), method = "wilcox.test", label.y = c(7,4,4,6), label = "p.format")+ # Add significance levels        theme_Publication() + 
         stat_n_text() +
         xlab("") + ylab('log2[Mutations per Mb]')+
         scale_y_continuous(limits=c(0,8)))
@@ -212,7 +200,6 @@ print(ggplot(rel.coll, aes(x = phase_label, y = logmut, colour= phase_label))+
         facet_wrap(~Histology.Detailed, nrow = 1) +
         theme_Publication() + 
         xlab("") + ylab('log2[Mutations per Mb]')+
-        #theme(strip.background = element_rect(fill=c("#97D1A9","#EA7075","#6E7BA2","#CEAC8F")))+
         scale_y_continuous(limits=c(0,8)))
 
 dev.off()
