@@ -47,7 +47,7 @@ Pipeline
          git clone https://github.com/marislab/pptc-pdx-tmb.git
    
          # Run script to create pie chart
-         Rscript ~/create-pptc-pdx-oncoprints/R/TMB.R 
+         Rscript ~/pptc-pdx-tmb/R/TMB.R 
          
 Results
 ========
