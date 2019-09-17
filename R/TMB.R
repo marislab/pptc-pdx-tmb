@@ -208,6 +208,7 @@ dev.off()
 ###mutations from dx/relapse paired models
 muts <- read.delim(paste0(dataDir, "total_Mutations-All-Dx-Relapse-Models.csv"), sep = ",")
 muts$log2muts <- log(muts$Total.Mutations, 2)
+muts$facet <- "All Histologies"
 dx.muts <- subset(muts, Phase_1 == "Diagnosis")
 rel.muts <- subset(muts, Phase_1 == "Relapse")
 median(dx.muts$Total.Mutations)
