@@ -1,6 +1,6 @@
 ###### Calculate TMB and create plots for Figures 3B and S3B########
 #
-#     Authors: Jo Lynne Rokita, Alvin Farrel, Khushbu Patel     
+#     Authors: Jo Lynne Rokita
 #     Updated 2019-09-16
 ################################################################
 
