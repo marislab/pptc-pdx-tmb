@@ -1,7 +1,7 @@
 .. |date| date::
 
 *******************************
-PPTC PDX Oncoprint Generation
+PPTC TMB Plots
 *******************************
 
 :authors: Jo Lynne Rokita
